@@ -7,52 +7,255 @@
       name="description"
       content="Project page for Prompting Rain Off: Evolving Compact Dual Prompts for Continual De-Raining."
     />
-    <title>Prompting Rain Off</title>
+    <meta property="og:title" content="Prompting Rain Off" />
+    <meta
+      property="og:description"
+      content="EcoDPL: an evolving compact dual-prompt framework for continual image de-raining."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/figures/fig3-architecture.png" />
+    <title>Prompting Rain Off | EcoDPL</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page">
-      <header class="hero">
-        <p class="venue">IEEE Transactions on Image Processing</p>
-        <h1>Prompting Rain Off</h1>
-        <p class="subtitle">Evolving Compact Dual Prompts for Continual De-Raining</p>
-        <p class="authors">Minghao Liu, et al.</p>
-        <nav class="actions" aria-label="Project links">
-          <a href="#abstract">Abstract</a>
-          <a href="#materials">Materials</a>
-          <a href="https://github.com/StaryMoon/Prompting-Rain-Off">GitHub</a>
-        </nav>
-      </header>
+    <header class="site-header">
+      <a class="brand" href="#">Prompting Rain Off</a>
+      <nav class="top-nav" aria-label="Page sections">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </header>
 
-      <section class="panel" id="abstract">
-        <p class="eyebrow">Project Page</p>
-        <h2>Continual Image De-Raining With Compact Prompts</h2>
-        <p>
-          This is the official project page for
-          <strong>Prompting Rain Off: Evolving Compact Dual Prompts for Continual De-Raining</strong>.
-          The page is online and will host the paper resources, visual comparisons,
-          implementation notes, and release materials.
+    <main>
+      <section class="hero" aria-labelledby="paper-title">
+        <p class="venue">IEEE Transactions on Image Processing, 2026</p>
+        <h1 id="paper-title">
+          <span class="title-line">Prompting Rain</span>
+          <span class="title-line">Off</span>
+          <span class="title-subtitle">Evolving Compact Dual Prompts for Continual De-Raining</span>
+        </h1>
+        <p class="authors">
+          Minghao Liu, Wenhan Yang, and Jiaying Liu
         </p>
+        <p class="affiliations">
+          Peking University · Pengcheng Laboratory
+        </p>
+        <div class="actions" aria-label="Project links">
+          <a href="#abstract">Read Abstract</a>
+          <a href="#method">View Method</a>
+          <a href="https://github.com/StaryMoon/Prompting-Rain-Off">GitHub</a>
+        </div>
+        <figure class="hero-figure">
+          <img
+            src="assets/figures/fig3-architecture.png"
+            alt="EcoDPL architecture with image prompts, feature prompts, P-Fuser, and Grad-Tuner"
+          />
+          <figcaption>
+            EcoDPL injects compact prompts at both image and feature levels, then evolves them through adaptive fusion and gradient-aware compression.
+          </figcaption>
+        </figure>
       </section>
 
-      <section class="grid" id="materials" aria-label="Materials">
-        <article>
-          <span>Paper</span>
-          <strong>Preparing</strong>
-          <p>The final paper link will be added here after release.</p>
-        </article>
-        <article>
-          <span>Code</span>
-          <strong>Preparing</strong>
-          <p>Training, evaluation, and continual de-raining scripts will be organized here.</p>
-        </article>
-        <article>
-          <span>Results</span>
-          <strong>Preparing</strong>
-          <p>Qualitative figures, benchmark tables, and ablations will be added to this page.</p>
-        </article>
+      <section class="section intro-grid" id="abstract">
+        <div>
+          <p class="eyebrow">Abstract</p>
+          <h2>Continual De-Raining Without Rehearsal</h2>
+          <p>
+            Single-image rain removal has advanced rapidly, but most methods still assume a static data distribution. In real scenes, rain patterns change with season, geography, camera, and weather intensity, so a de-raining model must learn new degradations without catastrophically forgetting old ones.
+          </p>
+          <p>
+            We propose <strong>Evolving COmpact Dual Prompt Learning (EcoDPL)</strong>, a rehearsal-free continual learning framework for low-level vision. EcoDPL maintains two prompt pools at the image and feature levels, inserts them into images and embedding tokens, and uses <strong>P-Fuser</strong> to generate adaptive attention-aware prompt weights for each input.
+          </p>
+          <p>
+            To keep knowledge compact, <strong>Grad-Tuner</strong> compresses learned knowledge into fewer prompts through a gradually tuned dictionary learning strategy, freeing space for future tasks while preserving useful de-raining behavior. Across synthetic and real-world benchmarks, EcoDPL consistently improves continual rain removal and remains effective under stationary data.
+          </p>
+        </div>
+        <aside class="paper-snapshot" aria-label="Paper snapshot">
+          <img src="assets/page-1.png" alt="First page snapshot of the Prompting Rain Off paper" />
+        </aside>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Highlights</p>
+        <h2>What EcoDPL Adds</h2>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-index">01</span>
+            <h3>Prompt-Based Continual De-Raining</h3>
+            <p>
+              A prompt-learning continual model tailored for low-level rain removal, using fixed additional parameters rather than expanding a full model for every task.
+            </p>
+          </article>
+          <article>
+            <span class="feature-index">02</span>
+            <h3>Dual-Level Prompt Pools</h3>
+            <p>
+              Image-level prompts capture local restoration cues, while feature-level prompts guide higher-level representation transfer across evolving rain types.
+            </p>
+          </article>
+          <article>
+            <span class="feature-index">03</span>
+            <h3>P-Fuser</h3>
+            <p>
+              An adaptive weight generation module assigns attention maps to prompts, allowing different inputs to receive flexible prompt combinations.
+            </p>
+          </article>
+          <article>
+            <span class="feature-index">04</span>
+            <h3>Grad-Tuner</h3>
+            <p>
+              A dictionary-learning compression strategy packs useful knowledge into fewer prompts, leaving capacity for new tasks in continual learning.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="method">
+        <p class="eyebrow">Method</p>
+        <h2>Evolving Compact Dual Prompts</h2>
+        <figure class="wide-figure">
+          <img
+            src="assets/figures/fig1-framework-comparison.png"
+            alt="Comparison between traditional continual learning and EcoDPL"
+          />
+          <figcaption>
+            Compared with regularization-style continual learning, EcoDPL stores task-specific knowledge in compact learnable prompts and selectively updates them for each instance.
+          </figcaption>
+        </figure>
+        <div class="figure-row">
+          <figure>
+            <img
+              src="assets/figures/fig2-training-pipeline.png"
+              alt="Training pipeline of EcoDPL for continual rain removal"
+            />
+            <figcaption>
+              During each task, EcoDPL updates prompt pools and then compresses them with Grad-Tuner.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/figures/fig4-p-fuser.png"
+              alt="Details of the P-Fuser prompt fusion module"
+            />
+            <figcaption>
+              P-Fuser produces input-aware prompt weights instead of relying on a fixed distance rule.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="results">
+        <p class="eyebrow">Results</p>
+        <h2>Continual and Real-World Rain Removal</h2>
+        <div class="metric-strip" aria-label="Key metrics">
+          <div>
+            <span>Rain800 → Rain100H</span>
+            <strong>25.18 / 0.8441</strong>
+            <p>Average PSNR / SSIM with EcoDPL.</p>
+          </div>
+          <div>
+            <span>Prompt Capacity</span>
+            <strong>Compact</strong>
+            <p>Grad-Tuner compresses old knowledge before learning new tasks.</p>
+          </div>
+          <div>
+            <span>Backbone Friendly</span>
+            <strong>3 Models</strong>
+            <p>Validated with TransWeather, Restormer, and PromptIR backbones.</p>
+          </div>
+        </div>
+        <figure class="wide-figure">
+          <img
+            src="assets/figures/fig5-rain800-comparison.png"
+            alt="Visual comparison on Rain800 after continual training"
+          />
+          <figcaption>
+            On synthetic rain streak removal, EcoDPL recovers cleaner details after sequential training than classical continual learning baselines.
+          </figcaption>
+        </figure>
+        <div class="figure-row">
+          <figure>
+            <img
+              src="assets/figures/fig6-real-rain-comparison.png"
+              alt="Real rain visual comparison after sequential Rain800 and Rain100H training"
+            />
+            <figcaption>
+              Real rainy scenes show the practical benefit of adaptive prompt fusion.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/figures/fig7-real-world-comparison.png"
+              alt="Real-world visual comparison with EcoDPL"
+            />
+            <figcaption>
+              EcoDPL reduces rain artifacts while preserving structure and texture details.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="table-gallery" aria-label="Quantitative result tables">
+          <figure>
+            <img
+              src="assets/figures/table2-continual-results.png"
+              alt="Table II continual rain removal PSNR and SSIM comparison"
+            />
+            <figcaption>Continual performance on Rain800 and Rain100H.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/figures/table3-backbones.png"
+              alt="Table III comparison across de-raining backbones"
+            />
+            <figcaption>EcoDPL remains effective across different de-raining backbones.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/figures/table4-real-world.png"
+              alt="Table IV non-reference metrics on real-world datasets"
+            />
+            <figcaption>Non-reference real-world evaluation on IIVIPC-DQA and DNN-SIRR.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section resources" aria-labelledby="resources-title">
+        <p class="eyebrow">Resources</p>
+        <h2 id="resources-title">Project Materials</h2>
+        <div class="resource-list">
+          <a href="https://github.com/StaryMoon/Prompting-Rain-Off">
+            <span>Repository</span>
+            <strong>StaryMoon/Prompting-Rain-Off</strong>
+          </a>
+          <a href="https://starymoon.github.io/Prompting-Rain-Off/">
+            <span>Project Page</span>
+            <strong>starymoon.github.io/Prompting-Rain-Off/</strong>
+          </a>
+          <div>
+            <span>Paper and Code</span>
+            <strong>Coming Soon</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="citation">
+        <p class="eyebrow">Citation</p>
+        <h2>Cite This Work</h2>
+        <pre><code>@article{liu2026prompting,
+  title={Prompting Rain Off: Evolving Compact Dual Prompts for Continual De-Raining},
+  author={Liu, Minghao and Yang, Wenhan and Liu, Jiaying},
+  journal={IEEE Transactions on Image Processing},
+  year={2026}
+}</code></pre>
       </section>
     </main>
+
+    <footer>
+      <p>
+        Prompting Rain Off · EcoDPL · Project page maintained by Minghao Liu
+      </p>
+    </footer>
   </body>
 </html>
